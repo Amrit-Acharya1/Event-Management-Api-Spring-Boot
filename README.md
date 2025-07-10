@@ -64,8 +64,11 @@ spring.datasource.username=your-username
 spring.datasource.password=your-password
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
+jwt.secret=your-256-bit-secret-key-here
+jwt.expiration=expiration time here
 ```
-
+- Or if you want to manage from utility class
+  
 ### 3. Configure JWT Secret
 
 Open `JwtUtil.java` and replace:
