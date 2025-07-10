@@ -51,4 +51,13 @@ public class AttendeeController {
             return new ResponseEntity<>(ApiResponse.error("Attendee not found with ID: " + id, HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
         }
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<Attendee>> updateAttendee(@PathVariable Long id, @RequestBody Attendee attendee) {
+        try {
+            Attendee updatedAttendee = attendeeService.updateAttendee(id, attendee);
+            return new ResponseEntity<>(ApiResponse.success(updatedAttendee, "Attendee updated successfully", HttpStatus.OK.value()), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(ApiResponse.error(e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+        }
+    }
 }

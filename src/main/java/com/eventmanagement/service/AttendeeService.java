@@ -51,4 +51,21 @@ public class AttendeeService {
         attendeeRepository.deleteById(id);
          
     }
+     public Attendee updateAttendee(Long id, Attendee updatedAttendee) {
+        Optional<Attendee> existingAttendee = attendeeRepository.findById(id);
+        if (existingAttendee.isPresent()) {
+            Attendee attendee = existingAttendee.get();
+            User user = userRepository.findById(updatedAttendee.getUser().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("User not found with ID: " + updatedAttendee.getUser().getId()));
+            Event event = eventRepository.findById(updatedAttendee.getEvent().getId())
+                    .orElseThrow(() -> new IllegalArgumentException("Event not found with ID: " + updatedAttendee.getEvent().getId()));
+
+            attendee.setUser(user);
+            attendee.setEvent(event);
+
+            return attendeeRepository.save(attendee);
+        } else {
+            throw new IllegalArgumentException("Attendee not found with ID: " + id);
+        }
+    }
 }
