@@ -182,8 +182,8 @@ event-management-system/
 
 **Amrit Acharya**  
 BCA Semester 7  
-*portfolio: [Visit my site](https://acharyaamrit.com.np)
-*Institution: Oxford College of Engineering and Management
+- portfolio: [Visit my site](https://acharyaamrit.com.np)
+- Institution: Oxford College of Engineering and Management
 
 ---
 
