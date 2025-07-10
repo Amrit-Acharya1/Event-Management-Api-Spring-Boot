@@ -67,7 +67,7 @@ spring.jpa.show-sql=true
 jwt.secret=your-256-bit-secret-key-here
 jwt.expiration=expiration time here
 ```
-- Or if you want to manage from utility class
+- Or if you want to manage from utility class do step no 3
   
 ### 3. Configure JWT Secret
 
