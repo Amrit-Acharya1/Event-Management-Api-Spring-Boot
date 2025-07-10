@@ -51,4 +51,13 @@ public class EventController {
             return new ResponseEntity<>(ApiResponse.error("Event not found with ID: " + id, HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
         }
     }
+     @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<Event>> updateEvent(@PathVariable Long id, @RequestBody Event event) {
+        try {
+            Event updatedEvent = eventService.updateEvent(id, event);
+            return new ResponseEntity<>(ApiResponse.success(updatedEvent, "Event updated successfully", HttpStatus.OK.value()), HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(ApiResponse.error(e.getMessage(), HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+        }
+    }
 }

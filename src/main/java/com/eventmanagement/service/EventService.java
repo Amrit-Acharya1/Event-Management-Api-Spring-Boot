@@ -32,4 +32,18 @@ public class EventService {
         eventRepository.deleteById(id);
          
     }
+    public Event updateEvent(Long id, Event updatedEvent) {
+        Optional<Event> existingEvent = eventRepository.findById(id);
+        if (existingEvent.isPresent()) {
+            Event event = existingEvent.get();
+            event.setTitle(updatedEvent.getTitle());
+            event.setDescription(updatedEvent.getDescription());
+            event.setDateTime(updatedEvent.getDateTime());
+            event.setLocation(updatedEvent.getLocation());
+            event.setOrganizer(updatedEvent.getOrganizer());
+            return eventRepository.save(event);
+        } else {
+            throw new IllegalArgumentException("Event not found with ID: " + id);
+        }
+    }
 }
