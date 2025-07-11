@@ -282,8 +282,8 @@ event-management-system/
 
 ## Author
 
+
 **Amrit Acharya**  
-Project for BCA Semester 7  
 - portfolio: [Visit my site](https://acharyaamrit.com.np)
 - Institution: Oxford College of Engineering and Management
 
