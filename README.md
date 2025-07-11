@@ -1,68 +1,49 @@
+
 # Event Management System
 
 ## Project Overview
 
-## Teams Detail
-- Amrit Acharya
-- Saroj Dhungana
+This is a Spring Boot-based Event Management System developed by **Amrit Acharya** & **Saroj Dhungana** as a project for **BCA Semester 7**. The application provides a RESTful API to manage events, attendees, and user authentication. It includes features for user registration, login, event creation, attendee registration, event/attendee management, and updating events/attendees, secured with JWT-based authentication.
 
-This is a **Spring Boot-based Event Management System** developed by **Amrit Acharya** & **Saroj Dhungana** as a project for **BCA Semester 7**. The application provides a RESTful API to manage events, attendees, and user authentication. It includes features for user registration, login, event creation, attendee registration, event/attendee management, and updating events/attendees, secured with JWT-based authentication.
-
-The project leverages **Spring Boot**, **Spring Security**, **JPA/Hibernate**, and **MySQL** to implement a robust backend system. The API endpoints return standardized JSON responses with appropriate HTTP status codes.
-
----
+The project leverages Spring Boot, Spring Security, JPA/Hibernate, and a relational database (e.g., MySQL) to implement a robust backend system. The API endpoints return standardized JSON responses with appropriate HTTP status codes for success, error, and unauthorized scenarios.
 
 ## Features
 
-- 🔐 **User Authentication**: Register and login with JWT-based authentication.
-- 📅 **Event Management**: Create, retrieve, update, and delete events.
-- 👥 **Attendee Management**: Register, retrieve, update, and delete attendees.
-- 🛡️ **Security**: Passwords are hashed with BCrypt, and endpoints are protected with JWT.
-- ⚠️ **Error Handling**: Consistent JSON responses using a custom `ApiResponse` wrapper.
-
----
+- **User Authentication**: Register and login users with JWT-based authentication.
+- **Event Management**: Create, retrieve, update, and delete events.
+- **Attendee Management**: Register, retrieve, update, and delete attendees for events.
+- **Security**: Passwords are hashed using BCrypt, and protected endpoints require a valid JWT token.
+- **Error Handling**: Consistent JSON responses using a custom ApiResponse wrapper.
 
 ## Technologies Used
 
-- **Spring Boot**
-- **Spring Security**
-- **Spring Data JPA (Hibernate)**
-- **MySQL**
-- **JWT (JSON Web Tokens)**
-- **Maven**
-
----
+- **Spring Boot**: Backend framework for building RESTful APIs.
+- **Spring Security**: For JWT-based authentication and authorization.
+- **Spring Data JPA**: For database operations with Hibernate.
+- **MySQL**: Relational database (configurable to other databases).
+- **JWT (JSON Web Tokens)**: For securing API endpoints.
+- **Maven**: Dependency management and build tool.
 
 ## Prerequisites
 
-- Java 17+
+- Java 17 or later
 - Maven 3.6+
-- MySQL or compatible database
-- IDE (e.g., IntelliJ, Eclipse)
-- Postman or API testing tool
-
----
+- MySQL (or another relational database)
+- IDE (e.g., IntelliJ IDEA, Eclipse)
+- Postman or a similar tool
 
 ## Setup Instructions
 
-### 1. Clone the Repository
+1. **Clone the Repository**
+   ```bash
+   git clone <repository-url>
+   cd event-management-system
+   ```
 
-```bash
-git clone https://github.com/Amrit-Acharya1/Event-Management-Api-Spring-Boot.git
-cd event-management-system
-```
-
-### 2. Configure the Database
-
-Create the database:
-
-```sql
-CREATE DATABASE event_management;
-```
-
-Update `application.properties`:
-
-```properties
+2. **Configure the Database**
+   - Install MySQL and create a database named `event_management`.
+   - Edit `src/main/resources/application.properties`:
+   ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/event_management
 spring.datasource.username=your-username
 spring.datasource.password=your-password
@@ -72,75 +53,53 @@ jwt.secret=your-256-bit-secret-key-here
 jwt.expiration=expiration time here
 ```
 - Or if you want to manage jwt secret and jwt expiration from utility class do step no 3 and remove it from application properties
-  
-### 3. Configure JWT Secret
 
-Open `JwtUtil.java` and replace:
+3. **Configure JWT Secret**
+   - Open `src/main/java/com/eventmanagement/util/JwtUtil.java`.
+   - Replace the `SECRET_KEY` with a secure key:
+     ```java
+     private final String SECRET_KEY = "your-256-bit-secret-key-here";
+     ```
 
-```java
-private final String SECRET_KEY = "your-256-bit-secret-key-here";
-```
+4. **Build and Run the Application**
+   ```bash
+   mvn clean install
+   mvn spring-boot:run
+   ```
 
-### 4. Build and Run the Application
+   Access at: [http://localhost:8080](http://localhost:8080)
 
-```bash
-mvn clean install
-mvn spring-boot:run
-```
+5. **Test the API**
+   - Register user: `POST /api/auth/register`
+   - Login: `POST /api/auth/login`
+   - Use `Bearer <token>` in headers for protected endpoints.
 
-### 5. Test the API
+## API Endpoints
 
-- Register via `/api/auth/register`
-- Login via `/api/auth/login` → receive JWT token
-- Include JWT in header: `Authorization: Bearer <token>`
-
----
-
-## API Endpoints Overview
-
-### Authentication (`/api/auth`)
-- `POST /register` – Register new user
-- `POST /login` – Authenticate and receive JWT
-
-### Events (`/api/events`)
-- `POST /` – Create new event
-- `GET /` – List all events
-- `GET /{id}` – Retrieve event by ID
-- `PUT /{id}` – Update event
-- `DELETE /{id}` – Delete event
-
-### Attendees (`/api/attendees`)
-- `POST /` – Register attendee
-- `GET /` – List all attendees
-- `GET /{id}` – Retrieve attendee by ID
-- `PUT /{id}` – Update attendee
-- `DELETE /{id}` – Delete attendee
-
----
+See the `docs/API.md` or use Postman collection.
 
 ## Project Structure
 
 ```
 event-management-system/
 ├── src/
-│   ├── main/java/com/eventmanagement/
-│   │   ├── config/
-│   │   ├── controller/
-│   │   ├── dto/
-│   │   ├── entity/
-│   │   ├── exception/
-│   │   ├── repository/
-│   │   ├── service/
-│   │   └── util/
-│   └── resources/
-│       └── application.properties
+│   ├── main/
+│   │   ├── java/com/eventmanagement/
+│   │   │   ├── config/
+│   │   │   ├── controller/
+│   │   │   ├── dto/
+│   │   │   ├── entity/
+│   │   │   ├── exception/
+│   │   │   ├── repository/
+│   │   │   ├── service/
+│   │   │   └── util/
+│   │   └── resources/
+│   └── test/
 ├── pom.xml
 └── README.md
 ```
 
----
-
-## Dependencies (`pom.xml`)
+## Dependencies
 
 ```xml
 <dependencies>
@@ -174,26 +133,24 @@ event-management-system/
 </dependencies>
 ```
 
----
-
 ## Notes
 
-- Store secrets like JWT key securely (e.g., environment variables)
-- Add input validation using `@Valid`, `@NotNull`, etc.
-- Add unit/integration tests for production readiness
-- Future enhancements: role-based access, event filtering, frontend UI
-
----
+- **Security**: Store secrets securely (env variables).
+- **Validation**: Use `@Valid`, `@NotNull`, etc. for request validation.
+- **Testing**: Add unit/integration tests.
+- **Future Enhancements**: Role-based access control, event search, frontend integration.
 
 ## Author
 
 **Amrit Acharya**  
-BCA Semester 7  
+Project for BCA Semester 7  
 - portfolio: [Visit my site](https://acharyaamrit.com.np)
 - Institution: Oxford College of Engineering and Management
 
----
+**Saroj Dhungana
+- Institution: Oxford College of Engineering and Management
+
 
 ## License
 
-Licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+Licensed under the [Apache License 2.0](LICENSE).
