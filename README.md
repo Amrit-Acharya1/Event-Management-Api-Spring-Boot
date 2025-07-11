@@ -36,7 +36,7 @@ The project leverages Spring Boot, Spring Security, JPA/Hibernate, and a relatio
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Amrit-Acharya1/Event-Management-Api-Spring-Boot.git
    cd event-management-system
    ```
 
