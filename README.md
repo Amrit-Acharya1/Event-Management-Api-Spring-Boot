@@ -51,7 +51,7 @@ The project leverages Spring Boot, Spring Security, JPA/Hibernate, and a relatio
         spring.jpa.show-sql=true
         jwt.secret=your-256-bit-secret-key-here
         jwt.expiration=expiration time here
-        ```
+  ```
 - Or if you want to manage jwt secret and jwt expiration from utility class do step no 3 and remove it from application properties
 
 3. **Configure JWT Secret**
