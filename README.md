@@ -1,6 +1,9 @@
 # Event Management System
 
 ## Project Overview
+#Teams Detail
+- Amrit Acharya
+- Saroj Dhungana
 
 This is a **Spring Boot-based Event Management System** developed by **Amrit Acharya** as a project for **BCA Semester 7**. The application provides a RESTful API to manage events, attendees, and user authentication. It includes features for user registration, login, event creation, attendee registration, event/attendee management, and updating events/attendees, secured with JWT-based authentication.
 
