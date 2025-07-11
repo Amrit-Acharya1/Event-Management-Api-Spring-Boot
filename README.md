@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-# Teams Detail
+## Teams Detail
 - Amrit Acharya
 - Saroj Dhungana
 
