@@ -287,7 +287,7 @@ Project for BCA Semester 7
 - portfolio: [Visit my site](https://acharyaamrit.com.np)
 - Institution: Oxford College of Engineering and Management
 
-**Saroj Dhungana
+**Saroj Dhungana**
 - Institution: Oxford College of Engineering and Management
 
 
