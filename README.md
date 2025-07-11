@@ -74,9 +74,149 @@ The project leverages Spring Boot, Spring Security, JPA/Hibernate, and a relatio
    - Login: `POST /api/auth/login`
    - Use `Bearer <token>` in headers for protected endpoints.
 
+---
+
 ## API Endpoints
 
-See the `docs/API.md` or use Postman collection.
+### 🔐 Authentication Endpoints (`/api/auth`)
+
+#### POST `/register`
+**Request:**
+```json
+{
+  "username": "john_doe",
+  "password": "password123",
+  "email": "john@example.com"
+}
+```
+**Success (201):**
+```json
+{
+  "success": true,
+  "data": {
+    "id": 1,
+    "username": "john_doe",
+    "email": "john@example.com",
+    "role": "USER"
+  },
+  "message": "User registered successfully",
+  "status": 201
+}
+```
+**Error (400):**
+```json
+{
+  "success": false,
+  "data": null,
+  "message": "Username already exists",
+  "status": 400
+}
+```
+
+#### POST `/login`
+**Request:**
+```json
+{
+  "username": "john_doe",
+  "password": "password123"
+}
+```
+**Success (200):**
+```json
+{
+  "success": true,
+  "data": "eyJhbGciOiJIUzI1NiIs...",
+  "message": "Login successful",
+  "status": 200
+}
+```
+**Unauthorized (401):**
+```json
+{
+  "success": false,
+  "data": null,
+  "message": "Unauthorized: Invalid username or password",
+  "status": 401
+}
+```
+
+---
+
+### 📅 Event Endpoints (`/api/events`)
+
+#### POST `/`
+Create a new event
+
+**Request:**
+```json
+{
+  "title": "Tech Conference",
+  "description": "Annual tech event",
+  "dateTime": "2025-07-15T10:00:00",
+  "location": "Convention Center",
+  "organizer": { "id": 1 }
+}
+```
+**Success (201):**
+```json
+{
+  "success": true,
+  "data": { "id": 1, "title": "Tech Conference", ... },
+  "message": "Event created successfully",
+  "status": 201
+}
+```
+**Unauthorized (401):**
+```json
+{
+  "success": false,
+  "data": null,
+  "message": "Unauthorized: Access is denied due to invalid or missing credentials",
+  "status": 401
+}
+```
+
+#### GET `/` – List all events
+
+#### GET `/{id}` – Get event by ID
+
+#### PUT `/{id}` – Update event
+
+#### DELETE `/{id}` – Delete event
+
+All above methods return consistent JSON with 200/201/404/401 statuses.
+
+---
+
+### 👤 Attendee Endpoints (`/api/attendees`)
+
+#### POST `/`
+**Request:**
+```json
+{
+  "user": { "id": 1 },
+  "event": { "id": 1 }
+}
+```
+**Success (201):**
+```json
+{
+  "success": true,
+  "data": { "id": 1, "user": {...}, "event": {...} },
+  "message": "Attendee registered successfully",
+  "status": 201
+}
+```
+
+#### GET `/` – List all attendees
+
+#### GET `/{id}` – Get attendee by ID
+
+#### PUT `/{id}` – Update attendee
+
+#### DELETE `/{id}` – Delete attendee
+
+---
 
 ## Project Structure
 
