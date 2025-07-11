@@ -1,5 +1,7 @@
 
 # Event Management System
+![Spring Boot Logo](https://spring.io/images/spring-logo-2022-dark-801d3532d5b24db9cb7942c3a6e8c599.svg)
+
 
 ## Project Overview
 
